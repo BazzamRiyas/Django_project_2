@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
 
+import StudentCard from './components/StudentCard';
+import Header from './components/Header';
+import CourseCard from './components/CourseCard';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <div>
+        <h2>Current Students</h2>
+        <StudentCard
+          name="John Doe"
+          studentId="12345"
+          major="Computer Science"
+        />
+        <StudentCard
+          name="Jane Smith"
+          studentId="67890"
+          major="Mathematics"
+        />
+      </div>
+      <div>
+        <h2>Available Courses</h2>
+        <CourseCard
+          type="Introduction to Programming"
+          course="CS101"
+          Credits="3"
+        />
+        <CourseCard
+          type="Calculus I"
+          course="MATH101"
+          Credits="4"
+        />
+      </div>
     </div>
   );
 }

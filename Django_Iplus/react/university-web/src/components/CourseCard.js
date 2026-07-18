@@ -2,22 +2,16 @@ import React from 'react';
 
 function CourseCard(props) {
     return (
-        <div
-        className="Course-card"
-        style={{
-            border: "1px solid #ccc",
-            padding: "10px",
-            margin: "10px",
-        }}
-        >
-        <h1>{props.type}</h1>
-        <p>ID: {props.course}</p>
-        <p>Credits: {props.Credits}</p>
-
-        <button onClick={() => alert("Viewing " + props.type)}>
-            View Details
+        <article className="course-card">
+            <div className="card-badge">Course</div>
+            <h3>{props.title}</h3>
+            <p>Code: {props.code}</p>
+            <p>Credits: {props.credits}</p>
+            <button onClick={() => alert('Viewing ' + props.title)}>
+                View details
             </button>
-        </div>
+        </article>
     );
 }
+
 export default CourseCard;

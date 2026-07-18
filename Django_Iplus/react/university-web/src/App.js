@@ -1,90 +1,92 @@
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
 import "./App.css";
 import Header from "./components/Header";
 import StudentCard from "./components/StudentCard";
 import CourseCard from "./components/CourseCard";
 import Counter from "./components/Counter";
-
-const universityName = "University Hub";
-
-const courses = [
-  { id: 1, name: "Intro to Programming", code: "CS101", credit: 3 },
-  { id: 2, name: "Data Structures", code: "CS201", credit: 4 },
-  { id: 3, name: "Web Development", code: "CS301", credit: 3 },
-];
-
-const students = [
-  { name: "Alice Wonderland", studentId: "CS101", major: "Computer Science" },
-  { name: "Bob Builder", studentId: "CS102", major: "Computer Science" },
-];
+import SearchBar from "./components/SearchBar";
+import StudentList from "./components/StudentList";
+import TitleUpdater from "./components/TitleUpdater";
+import UserGreeting from "./components/UserGreeting";
+import CourseList from "./components/CourseList";
+import RegistrationForm from "./components/RegistrationForm";
 
 function App() {
+  const universityName = "University Hub"; 
+
   return (
-    <div className="app-container">
-      <Header />
+    <>
+      <nav>
+        <Link to='/'>Home</Link>
+        <Link to="/students">Students</Link>
+        <Link to="/courses">Courses</Link>
+        <Link to="/about">About</Link>
+      </nav>
 
-      <main className="main-container">
-        <h1>Welcome to {universityName}</h1>
-        <p>Manage your academic life here</p>
-      </main>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/students" element={
+          <>
+            <UserGreeting isLoggedIn={false}/> 
+            <Header />
+            <h2>SearchBar</h2>
+            <SearchBar/>
+            <h2>Current Students</h2>
 
-      <section className="courses-section">
-        <h2>Available Courses</h2>
-        <div className="card-grid">
-          {courses.map((course) => (
-            <CourseCard
-              key={course.id}
-              type={course.name}
-              course={course.code}
-              Credits={course.credit}
+            <StudentCard 
+            name="Alice"
+            studentId="CS101"
+            major="Computer Science"
             />
-          ))}
-        </div>
-      </section>
 
-      <section className="students-section">
-        <h2>Enrolled Students</h2>
-        <div className="card-grid">
-          {students.map((student) => (
-            <StudentCard
-              key={student.studentId}
-              name={student.name}
-              studentId={student.studentId}
-              major={student.major}
+            <StudentCard 
+              name="Harry"
+              studentId="CS101"
+              major="Computer Science"
             />
-          ))}
-        </div>
-      </section>
 
-      <section className="attendance-section">
-        <h2>Attendance Counter</h2>
-        <Counter />
-      </section>
-    </div>
+
+            <StudentCard 
+              name="Tom"
+              studentId="CS102"
+              major="Computer Science"
+            />
+
+          </>
+        }/>
+      </Routes>
+      
+      <h2>Available Courses</h2>
+
+      <CourseCard 
+        title="Computer Science"
+        code="CS103"
+        credits="3"
+      />
+
+      <CourseCard 
+        title="Digital Electronics"
+        code="DE101"
+        credits="3"
+      />
+
+      <CourseCard 
+        title="DSA"
+        code="DSA122"
+        credits="2"
+      />
+
+
+      <h2>Attendence Counter</h2>
+      <Counter />
+
+      <StudentList/>
+    
+    <h2>Click Tracker</h2>
+      <TitleUpdater/>
+
+    <h2>Course List</h2>
+      <CourseList/>
+    </>
   );
 }
 
